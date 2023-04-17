@@ -11,12 +11,12 @@ typedef struct Stack {
 	Node *lastNode;
 	unsigned long long size;
 
-	void (*push)(struct Stack*, int);
-	int (*pop)(struct Stack*);
-	int (*peek)(struct Stack*);
-	bool (*isEmpty)(struct Stack*);
-	bool (*isFull)(struct Stack*);
-	void (*print)(struct Stack*);
+	void (*push)(struct Stack *, int);
+	int (*pop)(struct Stack *);
+	int (*peek)(struct Stack *);
+	bool (*isEmpty)(struct Stack *);
+	bool (*isFull)(struct Stack *);
+	void (*print)(struct Stack *);
 } Stack;
 
 bool _isEmpty(Stack *stack) {
@@ -24,16 +24,16 @@ bool _isEmpty(Stack *stack) {
 }
 
 void _push(Stack *stack, int value) {
-	if(stack->lastNode != (Node*)-1) {
-		Node* _lastNode = stack->lastNode;
+	if(stack->lastNode != (Node *)-1) {
+		Node *_lastNode = stack->lastNode;
 
-		stack->lastNode = (Node*)malloc(sizeof(Node));
+		stack->lastNode = (Node *)malloc(sizeof(Node));
 
 		stack->lastNode->previous = _lastNode;
 	} else {
-		stack->lastNode = (Node*)malloc(sizeof(Node));
+		stack->lastNode = (Node *)malloc(sizeof(Node));
 
-		stack->lastNode->previous = (Node*)-1;
+		stack->lastNode->previous = (Node *)-1;
 	}
 
 	stack->lastNode->value = value;
@@ -65,7 +65,7 @@ int _peek(Stack *stack) {
 }
 
 void _print(Stack *stack) {
-	int *values = (int*)malloc(sizeof(int) * stack->size);
+	int *values = (int *)malloc(sizeof(int) * stack->size);
 	Node *lastNode = stack->lastNode;
 
 	for(int i = 0; i < stack->size; i++) {

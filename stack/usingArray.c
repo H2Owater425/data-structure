@@ -3,27 +3,27 @@
 #include <stdlib.h>
 
 typedef struct Stack {
-	int* array;
+	int *array;
 	unsigned long long size;
 	unsigned long long index;
 
-	void (*push)(struct Stack*, int);
-	int (*pop)(struct Stack*);
-	int (*peek)(struct Stack*);
-	bool (*isEmpty)(struct Stack*);
-	bool (*isFull)(struct Stack*);
-	void (*print)(struct Stack*);
+	void (*push)(struct Stack *, int);
+	int (*pop)(struct Stack *);
+	int (*peek)(struct Stack *);
+	bool (*isEmpty)(struct Stack *);
+	bool (*isFull)(struct Stack *);
+	void (*print)(struct Stack *);
 } Stack;
 
-bool _isEmpty(Stack* stack) {
+bool _isEmpty(Stack *stack) {
 	return stack->index == -1;
 }
 
-bool _isFull(Stack* stack) {
+bool _isFull(Stack *stack) {
 	return stack->index == stack->size;
 }
 
-void _push(Stack* stack, int value) {
+void _push(Stack *stack, int value) {
 	if(!stack->isFull(stack)) {
 		stack->array[++(stack->index)] = value;
 	}
@@ -31,16 +31,16 @@ void _push(Stack* stack, int value) {
 	return;
 }
 
-int _pop(Stack* stack) {
+int _pop(Stack *stack) {
 	return !stack->isEmpty(stack) ? stack->array[stack->index--] : -1;
 }
 
-int _peek(Stack* stack) {
+int _peek(Stack *stack) {
 	return stack->index != -1 ? stack->array[stack->index] : -1;
 }
 
 
-void _print(Stack* stack) {
+void _print(Stack *stack) {
 	if(stack->index != -1) {
 		for(unsigned long long i = 0; i <= stack->index; i++) {
 			printf("%d ", stack->array[i]);
@@ -50,9 +50,9 @@ void _print(Stack* stack) {
 	return;
 }
 
-void initializeStack(Stack* stack, unsigned long long size) {
+void initializeStack(Stack *stack, unsigned long long size) {
 	stack->size = size;
-	stack->array = (int*)malloc(size * sizeof(int));
+	stack->array = (int *)malloc(size * sizeof(int));
 	stack->index = -1;
 
 	stack->push = _push;
